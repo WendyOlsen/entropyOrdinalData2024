@@ -1,7 +1,7 @@
 # entropyOrdinalData2024
 As you may know, informativeness of data rests upon 'low entropy'.  Here, the entropy of an ordinal variable is handled both through logical and philosophical statements, and two competing encodings. We test for the **impact of the cumulative encoding** on entropy and regressions.  Results were presented at Royal Statistical Society 2024 and British Society for Population Studies, 2024. We supply open-source code, which can be cited and is subject to change. 
 
-Title
+Title: 
 Entropy of Ordinal Inputs in A Social Data Science Context: Ontic, and Statistical Options
 Authors
 Wendy Olsen & Ziyang Zhou
