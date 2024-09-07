@@ -21,8 +21,8 @@ Note: before running this code, set the working directory to the folder that con
 setwd("C:/data/AsianBaro")
 library(haven)
 #abindia <- read_dta("/Users/zhouziyang/Desktop/RA/abindia/W5_India_merged_core_20220905_released.dta")
-#Note the cleaning of income variables in AB was done, creatin revision1 of raw data.
-abindia <- read_dta("C:/data/AsianBaro/raw/AsianBaro2019rev1.dta")
+#Note the cleaning of income variables in AB was done, creating revision1 of raw data. But, we are cleaning income in a stata file. So here we use raw original data.
+abindia <- read_dta("C:/data/AsianBaro/raw/AsianBaro2019.dta")
 dim(abindia)
 ```
 
@@ -128,17 +128,23 @@ print(distinct_values_edu)
 Pre-process the education variable. We want the following re-labelling transformation, where we let Edu_1 represents: No formal education; Edu_2 represents: Missing values, Incomplete primary/elementary, Complete primary/elementary; Edu_3 represents: Incomplete secondary/high school-technical/vocational type, Incomplete secondary/high school; Edu_4 represents: Complete secondary/high school-technical/vocational type, Complete secondary/high school; Edu_5 represents: Some university education, University education completed, Post-graduate degree.
 ```{r}
 # In the new labels:
-# all 1s are kept.
-# all 2s are kept, but all 3s are replaced with 2. All 99s are replaced with 2.
+# all 1s are kept. 
+#all 99 and then 11's and 2's  are replaced with a 1. combined with 2, 9911. 
+edu <- ifelse(edu == 99, 1, edu)
+edu <- ifelse(edu == 11, 1, edu)
+edu <- ifelse(edu == 2, 1, edu)
+
+# all 2s are kept, but all 3s are replaced with 2. 
 edu <- ifelse(edu == 3, 2, edu)
-edu <- ifelse(edu == 99, 2, edu)
+
 # all 4s and 6s are replaced with 3.
 edu <- ifelse(edu == 4, 3, edu)
 edu <- ifelse(edu == 6, 3, edu)
+
 # all 5s and 7s are replaced with 4.
 edu <- ifelse(edu == 5, 4, edu)
 edu <- ifelse(edu == 7, 4, edu)
-# all 8s, 9s, and 10s, are replaced with with 5.
+# all 8s, 9s, and 10s, are replaced with 5.
 edu <- ifelse(edu == 8, 5, edu)
 edu <- ifelse(edu == 9, 5, edu)
 edu <- ifelse(edu == 10, 5, edu)
