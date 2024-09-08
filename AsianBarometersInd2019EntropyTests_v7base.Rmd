@@ -134,7 +134,7 @@ edu <- ifelse(edu == 99, 1, edu)
 edu <- ifelse(edu == 11, 1, edu)
 edu <- ifelse(edu == 2, 1, edu)
 
-# all 2s are kept, but all 3s are replaced with 2. 
+# all 3s are replaced with 2. 
 edu <- ifelse(edu == 3, 2, edu)
 
 # all 4s and 6s are replaced with 3.
@@ -148,6 +148,9 @@ edu <- ifelse(edu == 7, 4, edu)
 edu <- ifelse(edu == 8, 5, edu)
 edu <- ifelse(edu == 9, 5, edu)
 edu <- ifelse(edu == 10, 5, edu)
+check<-table(edu)/5318
+str(check)
+#Please keep in mind that without weights, the sample is biased both toward lots of young people and lots who appear here as having preprimary education.  
 ```
 
 ### Scheme 1: Distinct Encoding

@@ -27,10 +27,9 @@ library(tidyverse)
 #*
 #*Step 1.  for Table of Bivariate Results
 str(age_encoded)
-str(edu_)
-df<-data.frame(cbind(data.frame(q63_encoded), data.frame(age_encoded), abindia$Q63))
-#basically, R does not work.  The vector names are nonsense, using illicit characters. (.) Later, we will rename these. 
-
+str(edu_encoded)
+dftest<-data.frame(cbind(data.frame(q63_encoded), data.frame(age_encoded), abindia$Q63))
+#basically, R is awkward - prev programme _v7base.Rmd has created some issues; some of the vector names are using illicit characters. (.) Below, we will rename these. 
 
 #* INTERLUDE on SIMULATION
 #generate education simulation multinomial
@@ -44,18 +43,8 @@ edusimt <- data.frame(t(edusim))
 str(edusimt)
 #Write the samples out to use elsewhere as a simulation of education only.
 edtmp <- tempfile(fileext = ".dta")
-write_dta(edusimt,  "/data/edtmp" )
-#experiment fails:   read_dta("C:/data/AsianBaro/data/edtmp.dta")
-
-#tmp <- tempfile(fileext = ".dta")
-#write_dta(df, tmp)
-#write_dta("q63age", q63age) #path comes first.  Then the object which is source.
-#none of the above works , due to non comparability of labels in the vectors. 
-#write_dta(df, "/data/tmp")
-#That has worked.  The file tmp.dta has appeared in the right place. 
-
-
-
+#Note- using haven package, we have to type in the whole file path!
+write_dta(edusimt,  "C:/data/AsianBaro/data/edtmp" )
 ```
 
 
@@ -69,6 +58,7 @@ names(edu1_encoded)<-c("edu1_1", "edu1_2", "edu1_3", "edu1_4","edu1_5")
 str(edu1_encoded)
 names(edu2_encoded)<-c("edu2_1", "edu2_2", "edu2_3", "edu2_4","edu2_5")
 str(edu1_encoded)
+
 age <- abindia$Se3_1
 summary(age)
 age_encoded <- matrix(0, nrow = length(age), ncol = num_bins)
@@ -85,14 +75,25 @@ summary(blocAB)
 
 #This is a set of 3 working commands which tell Haven to send the tmp.dta file out to stata to use. 
 df<-blocAB
-tmp <- tempfile(fileext = ".dta")
-write_dta(df, "C:/data/AsianBaro/data/tmp.dta")
+tmpAgeEduc <- tempfile(fileext = ".dta")
+#In R, the working directory won't be used in the write_dta command.
+#This appears to be a novelty of Haven, the package used for write_dta.
+#Therefore, specify the whole file path for the temporary dta file! 
+write_dta(df, "C:/data/AsianBaro/data/tmpAgeEduc.dta")
+
+#tmp <- tempfile(fileext = ".dta")
+#write_dta(df, tmp)
+#write_dta("q63age", q63age) #path comes first.  Then the object which is source.
+#none of the above works , due to non comparability of labels in the vectors. 
+#write_dta(df, "/data/tmp")
+#That has worked.  The file tmp.dta has appeared in the right place. 
 ```
 
 ## Including Plots
 
-You can also embed plots, for example:
+Comments here go into the report.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r nameofnextchunk, echo=FALSE}
+plot(df_edu$Edu)
+
 ```
