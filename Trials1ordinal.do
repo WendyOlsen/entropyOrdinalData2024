@@ -81,6 +81,15 @@ estat ic
 eststo esttrial3a
 
 *Equation 3b, Income by Age scheme 2 ordinal cumulative
+*note, some info we need is the entropy of age in ten bins, cumlative coding, and also, the entroyp of the combination income&age2, where income is the one-vector factor. 
+save "C:/data/AsianBaro/data/AsianBaro2019revForEntropy.dta", replace
+keep income age2_*
+*the default version from stata v18 is stata v13. 
+save incomeage2coding.dta, replace
+keep age2_*
+save age2coding.dta, replace
+use  "C:/data/AsianBaro/data/AsianBaro2019revForEntropy.dta", clear
+
 * base case is age2_1
 oprobit incomecat  age2_2 age2_3 age2_4 age2_5 age2_6 age2_7 age2_8 age2_9 age2_10      
 estat ic
@@ -126,12 +135,9 @@ estimates table esttrial6a esttrial6b
 etable, estimates(esttrial6a  esttrial6b)  mstat(N) mstat(aic) mstat(bic) mstat(ll)  mstat(df) export(trialfile6.pdf, replace)
 
 
-
-
 tab age2_9
 tab inc2_2 incomecat
-
-
+*#It looks odd.  But it is correct, that inc2_2 is 0 for those on income category 1, the poorest.  Then, inc2_2 is 1 for all others. 
 save "C:/data/AsianBaro/data/AsianBaro2019revForEntropy2.dta", replace
 *Note the new data "2" can be used outside this set of trials. 
 

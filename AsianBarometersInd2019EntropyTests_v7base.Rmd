@@ -285,7 +285,11 @@ age_shannon_entropy <- -sum(age_probs * log(age_probs))
 # Print the result
 print(paste("The Shannon entropy of Age calculated via the Shannon formula is: ",as.character(age_shannon_entropy)))
 print(paste("The Shannon entropy of Age calculated via the entropy package is: ",as.character(age_entropy)))
+
+#Generate entropy of age in scheme-2 cumulative coding, ten bins.
+
 ```
+
 
 # Functions
 
