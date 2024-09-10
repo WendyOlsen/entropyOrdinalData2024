@@ -16,7 +16,11 @@ First click the green CODE button. Now choose the 'Download ZIP' button. You  'e
 SUMMARY OF THE CONTENTS * * * * * Title: Entropy of Ordinal Inputs in A Social Data Science Context: Ontic and Statistical Options By Wendy Olsen & Ziyang Zhou
 We provided a rapid-fire talk at the Royal Statistical Society on 4 Sept, 2024. Then a longer talk at BSPS in Bath, UK, 11th Sept 2024. 
 
-The files include: --Two sets of Powerpoint slides -- one code file in R script format.  Two code files in Stata format.
+The files include: --Two sets of Powerpoint slides -- one code file in R script format.  
+Four code files in Stata do format.
+Four log files, one per 'do' file.
+Two files for use in R;  both have .Rmd suffixes.
+For each R file, there is the 'knit' possibility. We provide the Knit results as R Markdown PDF and html format files.
 
 We are ready to take your questions via email.
 
